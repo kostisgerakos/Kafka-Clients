@@ -1,0 +1,115 @@
+{
+   "type": "record",
+   "name": "Goto",
+   "namespace": "eu.rawfie.uxv.commands",
+   "doc": "Command a system to move to a given location at a given speed",
+   "fields": [
+      {
+         "name": "header",
+         "type": {
+            "type": "record",
+            "name": "Header",
+            "fields": [
+               {
+                  "name": "sourceSystem",
+                  "type": "string",
+                  "doc": "Canonical name of the originating system"
+               },
+               {
+                  "name": "sourceModule",
+                  "type": "string",
+                  "doc": "Canonical name of the module within a given system that originated the message"
+               },
+               {
+                  "name": "time",
+                  "type": "long",
+                  "doc": "Time elapsed since the Unix epoch",
+                  "unit": "ms"
+               }
+            ]
+         },
+         "doc": "Message header"
+      },
+      {
+         "name": "location",
+         "type": {
+            "type": "record",
+            "name": "Location",
+            "fields": [
+               {
+                  "name": "latitude",
+                  "type": "double",
+                  "doc": "Latitude in the WGS 84 reference coordinate system",
+                  "unit": "rad",
+                  "min": -1.5707964,
+                  "max": 1.5707964
+               },
+               {
+                  "name": "longitude",
+                  "type": "double",
+                  "doc": "Longitude in the WGS 84 reference coordinate system",
+                  "unit": "rad",
+                  "min": -3.1415927,
+                  "max": 3.1415927
+               },
+               {
+                  "name": "height",
+                  "type": "float",
+                  "doc": "Height above the WGS 84 ellipsoid",
+                  "unit": "m"
+               },
+               {
+                  "name": "n",
+                  "type": "double",
+                  "doc": "The North offset of the North/East/Down field with respect to Latitude/Longitude/Height",
+                  "unit": "m"
+               },
+               {
+                  "name": "e",
+                  "type": "double",
+                  "doc": "The East offset of the North/East/Down field with respect to Latitude/Longitude/Height",
+                  "unit": "m"
+               },
+               {
+                  "name": "d",
+                  "type": "double",
+                  "doc": "The Down offset of the North/East/Down field with respect to Latitude/Longitude/Height",
+                  "unit": "m"
+               },
+               {
+                  "name": "depth",
+                  "type": [
+                     "float",
+                     "null"
+                  ],
+                  "doc": "Depth",
+                  "unit": "m"
+               },
+               {
+                  "name": "altitude",
+                  "type": [
+                     "float",
+                     "null"
+                  ],
+                  "doc": "Altitude",
+                  "unit": "m"
+               }
+            ]
+         },
+         "doc": "Desired location"
+      },
+      {
+         "name": "speed",
+         "type": [
+            "float",
+            "null"
+         ],
+         "unit": "m/s"
+      },
+      {
+         "name": "timeout",
+         "type": "float",
+         "unit": "s"
+      }
+   ]
+}
