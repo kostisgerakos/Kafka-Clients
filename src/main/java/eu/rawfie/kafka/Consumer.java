@@ -8,7 +8,8 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
-import eu.rawfie.uxv.Location;
+import eu.rawfie.uxv.commands.Goto;
+
 
 
 public class Consumer {
@@ -24,12 +25,12 @@ public class Consumer {
 		props.put("schema.registry.url", "http://172.19.0.18:8081");
 		props.put("specific.avro.reader", "true");
 
-		final KafkaConsumer<String, Location> consumer = new KafkaConsumer<>(props);
+		final KafkaConsumer<String, Goto> consumer = new KafkaConsumer<>(props);
 		consumer.subscribe(Arrays.asList(topic));
 		while (true) {
 			//poll loop
-			final ConsumerRecords<String, Location> r = consumer.poll(1000);
-			for (ConsumerRecord<String, Location> rr : r) {
+			final ConsumerRecords<String, Goto> r = consumer.poll(1000);
+			for (ConsumerRecord<String, Goto> rr : r) {
 				System.out.println(rr.value());
 			}
 		}
